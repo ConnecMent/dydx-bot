@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
+## Prerequisites
+
 ## Description
-
-## What to google
-
-## Suggested resources
