@@ -1,5 +1,5 @@
-import type { Candle, PositionType } from "../types/common";
+import type { Candle, Pair, PositionType } from "../types/common";
 
 export default interface Strategy {
-  run(data: Record<string, Candle[]>): Record<string, PositionType>;
+  run(marketData: Record<Pair, Candle[]>): Record<Pair, PositionType>;
 }
