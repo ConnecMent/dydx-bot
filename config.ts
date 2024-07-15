@@ -1,3 +1,5 @@
-export const config : {interval:number} = {
-    interval: Number(process.env.INTERVAL),
-}
+const config = {
+  interval: Number(process.env.INTERVAL),
+};
+
+export default config;
