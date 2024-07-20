@@ -1,5 +1,5 @@
-import { strategyType, type Candle } from "./types/common";
+import { type PositionType } from "./types/common";
 
-function strategyService(candle: Candle): strategyType {
-  return strategyType.null;
+function strategyService(): PositionType {
+  return "long";
 }
