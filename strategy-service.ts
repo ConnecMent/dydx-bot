@@ -1,5 +1,7 @@
-import { type PositionType } from "./types/common";
+import { type PositionType, type Pair, type Candle } from "./types/common";
 
-function strategyService(): PositionType {
-  return "long";
+function strategyService(record: { [key: Pair]: Array<Candle> }): {
+  [key: Pair]: PositionType;
+} {
+  return { pair1: "long" };
 }
