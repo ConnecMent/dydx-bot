@@ -1,21 +1,37 @@
-const baseUrl:string = 'https://dydx-testnet.imperator.co/v4';
+import {baseUrl} from "./url.js";
 
-function fetchCandles(pair:string,timeFrame:string):void{
-    fetch(`${baseUrl}/candles/perpetualMarkets/${pair}?resolution=${timeFrame}`)
-    .then(response => {
-        if(!response.ok){
-            throw new Error('Network response was not ok');
+type Pair = string;
+type TimeFrame = string;
+
+
+async function fetchData(pair:Pair,timeFrame:TimeFrame): Promise<string> {
+    
+    try {
+        
+        const response = await fetch(`${baseUrl}/candles/perpetualMarkets/${pair}?resolution=${timeFrame}`);
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok or maybe input not valid pair and timeFrame');
         }
-        else{
-            return response.json();
-        }
-    })
-    .then(data=>{
-        console.log(data);
-    })
-    .catch(error=>{
-        console.error('Error:', error);
-        console.log("Check pair or timeFrame you enter");
-    })
+
+        const data = await response.json();
+
+        return data;
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }
+
 }
 
+
+
+
+
+
+
+
+
+
+    
