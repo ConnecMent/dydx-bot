@@ -7,9 +7,9 @@ settings:
 importers:
   .:
     dependencies:
-      typescript:
-        specifier: ^5.0.0
-        version: 5.5.4
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
     devDependencies:
       husky:
         specifier: ^9.1.4
@@ -20,6 +20,9 @@ importers:
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
 
 packages:
   ansi-escapes@7.0.0:
@@ -102,6 +105,13 @@ packages:
     peerDependenciesMeta:
       supports-color:
         optional: true
+
+  dotenv@16.4.5:
+    resolution:
+      {
+        integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==,
+      }
+    engines: { node: '>=12' }
 
   emoji-regex@10.3.0:
     resolution:
@@ -470,6 +480,8 @@ snapshots:
   debug@4.3.6:
     dependencies:
       ms: 2.1.2
+
+  dotenv@16.4.5: {}
 
   emoji-regex@10.3.0: {}
 
