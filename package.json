@@ -12,6 +12,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
+    "format": "npx prettier --ignore-unknown --write .",
     "prepare": "husky"
   },
   "lint-staged": {
