@@ -1,4 +1,4 @@
-import {config} from "./config.ts";
+import config from './config';
 
-console.log("Hello DyDx Bot!");
+console.log('Hello DyDx Bot!');
 console.log(config.interval);
