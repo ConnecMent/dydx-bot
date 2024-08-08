@@ -1,1 +1,1 @@
-export const baseUrl: string = "https://indexer.dydx.trade/v4";
+export const baseUrl: string = 'https://indexer.dydx.trade/v4';
