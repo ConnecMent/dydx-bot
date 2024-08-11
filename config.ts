@@ -1,8 +1,7 @@
 // import env file with 'dotenv'
-// require('dotenv').config({ path: '.env' });
 
 import dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
+dotenv.config({ path: ['.env.local', '.env'] });
 
 const config = {
   interval: Number(process.env.INTERVAL),
