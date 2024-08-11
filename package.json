@@ -14,7 +14,8 @@
   "scripts": {
     "prepare": "husky",
     "dev": "tsx index.ts",
-    "node": "node --import=tsx index.ts"
+    "node": "node --import=tsx index.ts",
+    "format": "npx prettier --ignore-unknown --write ."
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write"
