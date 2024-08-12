@@ -3,7 +3,21 @@ import {Pair} from '../types/common.js'
 
 type TimeFrame = string;
 
-async function fetchCandles(pair: Pair, timeFrame: TimeFrame): Promise<string> {
+interface candles {
+  startedAt: "string",
+  ticker: "string",
+  resolution: "1MIN",
+  low: "string",
+  high: "string",
+  open: "string",
+  close: "string",
+  baseTokenVolume: "string",
+  usdVolume: "string",
+  trades: "int",
+  startingOpenInterest: "string",
+}
+
+async function fetchCandles(pair: Pair, timeFrame: TimeFrame): Promise<candles[]> {
   const response = await fetch(
     `${baseUrl}/candles/perpetualMarkets/${pair}?resolution=${timeFrame}`,
   );
