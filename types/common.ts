@@ -5,4 +5,5 @@
 export type Candle = any;
 
 export type Pair = string;
-export type PositionType = "long" | "short" | null;
+export type PositionType = 'long' | 'short' | null;
+export type TimeFrame = string;

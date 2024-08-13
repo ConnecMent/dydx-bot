@@ -1,23 +1,32 @@
 import { baseUrl } from './url.js';
-import {Pair} from '../types/common.js'
-
-type TimeFrame = string;
+import { Pair } from '../types/common.js';
+import { TimeFrame } from '../types/common.js';
 
 interface Candle {
-  startedAt: string,
-  ticker: string,
-  resolution: "1MIN"|"5MINS"|"15MINS"|"30MINS"|"1HOUR"|"4HOURS"|"1DAY",
-  low: string|number,
-  high: string|number,
-  open: string|number,
-  close: string|number,
-  baseTokenVolume: string|number,
-  usdVolume: string|number,
-  trades: number,
-  startingOpenInterest: string,
+  startedAt: string;
+  ticker: string;
+  resolution:
+    | '1MIN'
+    | '5MINS'
+    | '15MINS'
+    | '30MINS'
+    | '1HOUR'
+    | '4HOURS'
+    | '1DAY';
+  low: string | number;
+  high: string | number;
+  open: string | number;
+  close: string | number;
+  baseTokenVolume: string | number;
+  usdVolume: string | number;
+  trades: number;
+  startingOpenInterest: string;
 }
 
-async function fetchCandles(pair: Pair, timeFrame: TimeFrame): Promise<Candle[]> {
+async function fetchCandles(
+  pair: Pair,
+  timeFrame: TimeFrame,
+): Promise<Candle[]> {
   const response = await fetch(
     `${baseUrl}/candles/perpetualMarkets/${pair}?resolution=${timeFrame}`,
   );
