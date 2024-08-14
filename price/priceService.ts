@@ -1,27 +1,7 @@
 import { baseUrl } from './url.js';
 import { Pair } from '../types/common.js';
 import { TimeFrame } from '../types/common.js';
-
-interface Candle {
-  startedAt: string;
-  ticker: string;
-  resolution:
-    | '1MIN'
-    | '5MINS'
-    | '15MINS'
-    | '30MINS'
-    | '1HOUR'
-    | '4HOURS'
-    | '1DAY';
-  low: string | number;
-  high: string | number;
-  open: string | number;
-  close: string | number;
-  baseTokenVolume: string | number;
-  usdVolume: string | number;
-  trades: number;
-  startingOpenInterest: string;
-}
+import { Candle } from '../types/common.js';
 
 async function fetchCandles(
   pair: Pair,
