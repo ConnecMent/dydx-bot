@@ -1,7 +1,5 @@
 import { baseUrl } from './url.js';
-import { Pair } from '../types/common.js';
-import { TimeFrame } from '../types/common.js';
-import { Candle } from '../types/common.js';
+import { Candle, TimeFrame, Pair } from '../types/common.js';
 
 async function fetchCandles(
   pair: Pair,
