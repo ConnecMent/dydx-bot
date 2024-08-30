@@ -42,4 +42,5 @@ export interface OrderConfig {
   postOnly: boolean;
   reduceOnly: boolean;
   triggerPrice: number | undefined;
+  goodTilTimeInSeconds: number;
 }

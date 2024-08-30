@@ -47,7 +47,7 @@ const createOrderService = (mnemonic: string): OrderService => ({
         size,
         config.clientId,
         config.timeInForce,
-        0, // @param goodTilTimeInSeconds — The goodTilTimeInSeconds of the order to place.
+        config.goodTilTimeInSeconds,
         config.execution,
         config.postOnly,
         config.reduceOnly,
@@ -71,7 +71,7 @@ const createOrderService = (mnemonic: string): OrderService => ({
         size,
         config.clientId,
         config.timeInForce,
-        0, // @param goodTilTimeInSeconds — The goodTilTimeInSeconds of the order to place.
+        config.goodTilTimeInSeconds,
         config.execution,
         config.postOnly,
         config.reduceOnly,
