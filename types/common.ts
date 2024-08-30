@@ -36,7 +36,6 @@ export type Tx = BroadcastTxAsyncResponse | BroadcastTxSyncResponse | IndexedTx;
 export type Side = OrderSide.BUY | OrderSide.SELL;
 export type Position = string;
 export interface OrderConfig {
-  market: string;
   clientId: number;
   timeInForce: OrderTimeInForce;
   execution: OrderExecution;

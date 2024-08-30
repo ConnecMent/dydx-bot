@@ -17,6 +17,7 @@ interface OrderService {
     config: OrderConfig,
   ) => Promise<Tx>;
   placeMarketOrder: (
+    pair: Pair,
     side: Side,
     price: number,
     size: number,
@@ -39,7 +40,7 @@ const createOrderService = (mnemonic: string): OrderService => ({
 
       const tx = await client.placeOrder(
         subaccount,
-        config.market,
+        pair,
         OrderType.LIMIT,
         side,
         price,
@@ -56,14 +57,14 @@ const createOrderService = (mnemonic: string): OrderService => ({
       resolve(tx);
     });
   },
-  placeMarketOrder: (side, price, size, config) => {
+  placeMarketOrder: (pair, side, price, size, config) => {
     return new Promise<Tx>(async (resolve) => {
       const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
       const subaccount = new SubaccountClient(wallet, 0);
 
       const tx = await client.placeOrder(
         subaccount,
-        config.market,
+        pair,
         OrderType.MARKET,
         side,
         price,
