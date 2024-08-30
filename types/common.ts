@@ -1,3 +1,13 @@
+import {
+  OrderExecution,
+  OrderSide,
+  OrderTimeInForce,
+} from '@dydxprotocol/v4-client-js';
+import {
+  BroadcastTxAsyncResponse,
+  BroadcastTxSyncResponse,
+} from '@cosmjs/tendermint-rpc/build/tendermint37';
+import { IndexedTx } from '@cosmjs/stargate';
 export type Pair = string;
 export type PositionType = 'long' | 'short' | null;
 export type TimeFrame =
@@ -20,4 +30,17 @@ export interface Candle {
   usdVolume: string;
   trades: number;
   startingOpenInterest: string;
+}
+
+export type Tx = BroadcastTxAsyncResponse | BroadcastTxSyncResponse | IndexedTx;
+export type Side = OrderSide.BUY | OrderSide.SELL;
+export type Position = string;
+export interface OrderConfig {
+  market: string;
+  clientId: number;
+  timeInForce: OrderTimeInForce;
+  execution: OrderExecution;
+  postOnly: boolean;
+  reduceOnly: boolean;
+  triggerPrice: number | undefined;
 }
