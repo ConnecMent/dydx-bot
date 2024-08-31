@@ -23,8 +23,10 @@ interface OrderService {
     size: number,
     config: OrderConfig,
   ) => Promise<Tx>;
-  placeTakeProfitOrder: (/* same as prev */) => Promise<Tx>;
-  placeStopLossOrder: (/* same as prev */) => Promise<Tx>;
+  placeLimitTakeProfitOrder: (/* same as prev */) => Promise<Tx>;
+  placeMarketTakeProfitOrder: (/* same as prev */) => Promise<Tx>;
+  placeLimitStopLossOrder: (/* same as prev */) => Promise<Tx>;
+  placeMarketStopLossOrder: (/* same as prev */) => Promise<Tx>;
   listPositions: () => Promise<Position[]>;
 }
 
@@ -81,10 +83,16 @@ const createOrderService = (mnemonic: string): OrderService => ({
       resolve(tx);
     });
   },
-  placeTakeProfitOrder: () => {
+  placeLimitTakeProfitOrder: () => {
     return new Promise<Tx>((resolve, reject) => {});
   },
-  placeStopLossOrder: () => {
+  placeMarketTakeProfitOrder: () => {
+    return new Promise<Tx>((resolve, reject) => {});
+  },
+  placeLimitStopLossOrder: () => {
+    return new Promise<Tx>((resolve, reject) => {});
+  },
+  placeMarketStopLossOrder: () => {
     return new Promise<Tx>((resolve, reject) => {});
   },
   listPositions: () => {
