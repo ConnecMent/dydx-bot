@@ -23,10 +23,34 @@ interface OrderService {
     size: number,
     config: OrderConfig,
   ) => Promise<Tx>;
-  placeLimitTakeProfitOrder: (/* same as prev */) => Promise<Tx>;
-  placeMarketTakeProfitOrder: (/* same as prev */) => Promise<Tx>;
-  placeLimitStopLossOrder: (/* same as prev */) => Promise<Tx>;
-  placeMarketStopLossOrder: (/* same as prev */) => Promise<Tx>;
+  placeLimitTakeProfitOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => Promise<Tx>;
+  placeMarketTakeProfitOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => Promise<Tx>;
+  placeLimitStopLossOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => Promise<Tx>;
+  placeMarketStopLossOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => Promise<Tx>;
   listPositions: () => Promise<Position[]>;
 }
 
@@ -52,7 +76,7 @@ const createOrderService = (mnemonic: string): OrderService => ({
         config.goodTilTimeInSeconds,
         config.execution,
         config.postOnly,
-        config.reduceOnly,
+        false,
         config.triggerPrice,
       );
 
@@ -76,24 +100,108 @@ const createOrderService = (mnemonic: string): OrderService => ({
         config.goodTilTimeInSeconds,
         config.execution,
         config.postOnly,
-        config.reduceOnly,
+        false,
         config.triggerPrice,
       );
 
       resolve(tx);
     });
   },
-  placeLimitTakeProfitOrder: () => {
-    return new Promise<Tx>((resolve, reject) => {});
+  placeLimitTakeProfitOrder: (pair, side, price, size, config) => {
+    return new Promise<Tx>(async (resolve) => {
+      const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
+      const subaccount = new SubaccountClient(wallet, 0);
+
+      const tx = await client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.TAKE_PROFIT_LIMIT,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        true,
+        config.triggerPrice,
+      );
+
+      resolve(tx);
+    });
   },
-  placeMarketTakeProfitOrder: () => {
-    return new Promise<Tx>((resolve, reject) => {});
+  placeMarketTakeProfitOrder: (pair, side, price, size, config) => {
+    return new Promise<Tx>(async (resolve) => {
+      const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
+      const subaccount = new SubaccountClient(wallet, 0);
+
+      const tx = await client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.TAKE_PROFIT_MARKET,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        true,
+        config.triggerPrice,
+      );
+
+      resolve(tx);
+    });
   },
-  placeLimitStopLossOrder: () => {
-    return new Promise<Tx>((resolve, reject) => {});
+  placeLimitStopLossOrder: (pair, side, price, size, config) => {
+    return new Promise<Tx>(async (resolve) => {
+      const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
+      const subaccount = new SubaccountClient(wallet, 0);
+
+      const tx = await client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.STOP_LIMIT,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        true,
+        config.triggerPrice,
+      );
+
+      resolve(tx);
+    });
   },
-  placeMarketStopLossOrder: () => {
-    return new Promise<Tx>((resolve, reject) => {});
+  placeMarketStopLossOrder: (pair, side, price, size, config) => {
+    return new Promise<Tx>(async (resolve) => {
+      const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
+      const subaccount = new SubaccountClient(wallet, 0);
+
+      const tx = await client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.STOP_MARKET,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        true,
+        config.triggerPrice,
+      );
+
+      resolve(tx);
+    });
   },
   listPositions: () => {
     return new Promise<Position[]>((resolve, reject) => {});

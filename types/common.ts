@@ -40,7 +40,6 @@ export interface OrderConfig {
   timeInForce: OrderTimeInForce;
   execution: OrderExecution;
   postOnly: boolean;
-  reduceOnly: boolean;
   triggerPrice: number | undefined;
   goodTilTimeInSeconds: number;
 }
