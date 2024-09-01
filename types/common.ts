@@ -34,7 +34,7 @@ export interface Candle {
 
 export type Tx = BroadcastTxAsyncResponse | BroadcastTxSyncResponse | IndexedTx;
 export type Side = OrderSide.BUY | OrderSide.SELL;
-export type Position = string;
+export type Position = {};
 export interface OrderConfig {
   clientId: number;
   timeInForce: OrderTimeInForce;
