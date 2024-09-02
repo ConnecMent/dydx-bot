@@ -52,7 +52,7 @@ interface OrderService {
     size: number,
     config: OrderConfig,
   ) => Promise<Tx>;
-  listPositions: (address: string) => Promise<Position[]>;
+  listPositions: () => Promise<Position[]>;
 }
 
 // order factory function
@@ -216,14 +216,18 @@ const createOrderService = (
       resolve(tx);
     });
   },
-  listPositions: (address) => {
+  listPositions: () => {
     return new Promise<Position[]>(async (resolve) => {
+      const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
+
       const client = new IndexerClient(network.indexerConfig);
 
-      const subAccRes = await client.account.getSubaccounts(address);
+      const subAccRes = await client.account.getSubaccounts(
+        wallet.address || '',
+      );
 
       const response = await client.account.getSubaccountAssetPositions(
-        address,
+        wallet.address || '',
         subAccRes.subaccounts[0],
       );
       const positions = response.positions;
