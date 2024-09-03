@@ -33,7 +33,6 @@ export interface Candle {
 }
 
 export type Tx = BroadcastTxAsyncResponse | BroadcastTxSyncResponse | IndexedTx;
-export type Side = OrderSide.BUY | OrderSide.SELL;
 export type Position = {};
 export interface OrderConfig {
   clientId: number;

@@ -1,5 +1,6 @@
-import { Tx, Pair, Side, Position, OrderConfig } from '../types/common.js';
+import { Tx, Pair, Position, OrderConfig } from '../types/common.js';
 import {
+  OrderSide,
   OrderType,
   BECH32_PREFIX,
   LocalWallet,
@@ -20,7 +21,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
   return {
     placeLimitOrder: (
       pair: Pair,
-      side: Side,
+      side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
@@ -47,7 +48,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     },
     placeMarketOrder: (
       pair: Pair,
-      side: Side,
+      side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
@@ -74,7 +75,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     },
     placeLimitTakeProfitOrder: (
       pair: Pair,
-      side: Side,
+      side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
@@ -101,7 +102,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     },
     placeMarketTakeProfitOrder: (
       pair: Pair,
-      side: Side,
+      side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
@@ -128,7 +129,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     },
     placeLimitStopLossOrder: (
       pair: Pair,
-      side: Side,
+      side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
@@ -155,7 +156,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     },
     placeMarketStopLossOrder: (
       pair: Pair,
-      side: Side,
+      side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
