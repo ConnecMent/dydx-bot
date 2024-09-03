@@ -9,58 +9,15 @@ import {
   IndexerClient,
 } from '@dydxprotocol/v4-client-js';
 
-interface OrderService {
+// order factory function
+const createOrderService = (mnemonic: string, network: Network) => ({
   placeLimitOrder: (
     pair: Pair,
     side: Side,
     price: number,
     size: number,
     config: OrderConfig,
-  ) => Promise<Tx>;
-  placeMarketOrder: (
-    pair: Pair,
-    side: Side,
-    price: number,
-    size: number,
-    config: OrderConfig,
-  ) => Promise<Tx>;
-  placeLimitTakeProfitOrder: (
-    pair: Pair,
-    side: Side,
-    price: number,
-    size: number,
-    config: OrderConfig,
-  ) => Promise<Tx>;
-  placeMarketTakeProfitOrder: (
-    pair: Pair,
-    side: Side,
-    price: number,
-    size: number,
-    config: OrderConfig,
-  ) => Promise<Tx>;
-  placeLimitStopLossOrder: (
-    pair: Pair,
-    side: Side,
-    price: number,
-    size: number,
-    config: OrderConfig,
-  ) => Promise<Tx>;
-  placeMarketStopLossOrder: (
-    pair: Pair,
-    side: Side,
-    price: number,
-    size: number,
-    config: OrderConfig,
-  ) => Promise<Tx>;
-  listPositions: () => Promise<Position[]>;
-}
-
-// order factory function
-const createOrderService = (
-  mnemonic: string,
-  network: Network,
-): OrderService => ({
-  placeLimitOrder: (pair, side, price, size, config) => {
+  ) => {
     return new Promise<Tx>(async (resolve) => {
       const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
       const subaccount = new SubaccountClient(wallet, 0);
@@ -86,7 +43,13 @@ const createOrderService = (
       resolve(tx);
     });
   },
-  placeMarketOrder: (pair, side, price, size, config) => {
+  placeMarketOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => {
     return new Promise<Tx>(async (resolve) => {
       const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
       const subaccount = new SubaccountClient(wallet, 0);
@@ -112,7 +75,13 @@ const createOrderService = (
       resolve(tx);
     });
   },
-  placeLimitTakeProfitOrder: (pair, side, price, size, config) => {
+  placeLimitTakeProfitOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => {
     return new Promise<Tx>(async (resolve) => {
       const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
       const subaccount = new SubaccountClient(wallet, 0);
@@ -138,7 +107,13 @@ const createOrderService = (
       resolve(tx);
     });
   },
-  placeMarketTakeProfitOrder: (pair, side, price, size, config) => {
+  placeMarketTakeProfitOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => {
     return new Promise<Tx>(async (resolve) => {
       const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
       const subaccount = new SubaccountClient(wallet, 0);
@@ -164,7 +139,13 @@ const createOrderService = (
       resolve(tx);
     });
   },
-  placeLimitStopLossOrder: (pair, side, price, size, config) => {
+  placeLimitStopLossOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => {
     return new Promise<Tx>(async (resolve) => {
       const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
       const subaccount = new SubaccountClient(wallet, 0);
@@ -190,7 +171,13 @@ const createOrderService = (
       resolve(tx);
     });
   },
-  placeMarketStopLossOrder: (pair, side, price, size, config) => {
+  placeMarketStopLossOrder: (
+    pair: Pair,
+    side: Side,
+    price: number,
+    size: number,
+    config: OrderConfig,
+  ) => {
     return new Promise<Tx>(async (resolve) => {
       const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
       const subaccount = new SubaccountClient(wallet, 0);
