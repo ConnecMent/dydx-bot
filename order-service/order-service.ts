@@ -10,7 +10,6 @@ import {
   IndexerClient,
 } from '@dydxprotocol/v4-client-js';
 
-// order factory function
 const createOrderService = async (mnemonic: string, network: Network) => {
   const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
   const subaccount = new SubaccountClient(wallet, 0);
