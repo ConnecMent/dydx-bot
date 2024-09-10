@@ -13,7 +13,7 @@ const createOrderService = async (
   network: Network,
 ) => {
   const client = await CompositeClient.connect(network);
-  const indexer_client = new IndexerClient(network.indexerConfig);
+  const indexerClient = new IndexerClient(network.indexerConfig);
 
   return {
     placeLimitOrder: async (
@@ -161,7 +161,7 @@ const createOrderService = async (
     },
 
     listPositions: async (): Promise<Position[]> => {
-      return indexer_client.account
+      return indexerClient.account
         .getSubaccountAssetPositions(
           subaccount.address,
           subaccount.subaccountNumber,
