@@ -1,13 +1,10 @@
-import {
-  OrderExecution,
-  OrderSide,
-  OrderTimeInForce,
-} from '@dydxprotocol/v4-client-js';
+import { OrderExecution, OrderTimeInForce } from '@dydxprotocol/v4-client-js';
 import {
   BroadcastTxAsyncResponse,
   BroadcastTxSyncResponse,
 } from '@cosmjs/tendermint-rpc/build/tendermint37';
 import { IndexedTx } from '@cosmjs/stargate';
+
 export type Pair = string;
 export type PositionType = 'long' | 'short' | null;
 export type TimeFrame =

@@ -2,8 +2,6 @@ import { Tx, Pair, Position, OrderConfig } from '../types/common.js';
 import {
   OrderSide,
   OrderType,
-  BECH32_PREFIX,
-  LocalWallet,
   SubaccountClient,
   Network,
   CompositeClient,
