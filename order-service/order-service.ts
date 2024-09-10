@@ -18,183 +18,163 @@ const createOrderService = async (mnemonic: string, network: Network) => {
   const indexer_client = new IndexerClient(network.indexerConfig);
 
   return {
-    placeLimitOrder: (
+    placeLimitOrder: async (
       pair: Pair,
       side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
-    ) => {
-      return new Promise<Tx>((resolve) => {
-        resolve(
-          client.placeOrder(
-            subaccount,
-            pair,
-            OrderType.LIMIT,
-            side,
-            price,
-            size,
-            config.clientId,
-            config.timeInForce,
-            config.goodTilTimeInSeconds,
-            config.execution,
-            config.postOnly,
-            false,
-            config.triggerPrice,
-          ),
-        );
-      });
+    ): Promise<Tx> => {
+      return client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.LIMIT,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        false,
+        config.triggerPrice,
+      );
     },
-    placeMarketOrder: (
+
+    placeMarketOrder: async (
       pair: Pair,
       side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
-    ) => {
-      return new Promise<Tx>((resolve) => {
-        resolve(
-          client.placeOrder(
-            subaccount,
-            pair,
-            OrderType.MARKET,
-            side,
-            price,
-            size,
-            config.clientId,
-            config.timeInForce,
-            config.goodTilTimeInSeconds,
-            config.execution,
-            config.postOnly,
-            false,
-            config.triggerPrice,
-          ),
-        );
-      });
+    ): Promise<Tx> => {
+      return client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.MARKET,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        false,
+        config.triggerPrice,
+      );
     },
-    placeLimitTakeProfitOrder: (
+
+    placeLimitTakeProfitOrder: async (
       pair: Pair,
       side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
-    ) => {
-      return new Promise<Tx>((resolve) => {
-        resolve(
-          client.placeOrder(
-            subaccount,
-            pair,
-            OrderType.TAKE_PROFIT_LIMIT,
-            side,
-            price,
-            size,
-            config.clientId,
-            config.timeInForce,
-            config.goodTilTimeInSeconds,
-            config.execution,
-            config.postOnly,
-            true,
-            config.triggerPrice,
-          ),
-        );
-      });
+    ): Promise<Tx> => {
+      return client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.TAKE_PROFIT_LIMIT,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        true,
+        config.triggerPrice,
+      );
     },
-    placeMarketTakeProfitOrder: (
+
+    placeMarketTakeProfitOrder: async (
       pair: Pair,
       side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
-    ) => {
-      return new Promise<Tx>((resolve) => {
-        resolve(
-          client.placeOrder(
-            subaccount,
-            pair,
-            OrderType.TAKE_PROFIT_MARKET,
-            side,
-            price,
-            size,
-            config.clientId,
-            config.timeInForce,
-            config.goodTilTimeInSeconds,
-            config.execution,
-            config.postOnly,
-            true,
-            config.triggerPrice,
-          ),
-        );
-      });
+    ): Promise<Tx> => {
+      return client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.TAKE_PROFIT_MARKET,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        true,
+        config.triggerPrice,
+      );
     },
-    placeLimitStopLossOrder: (
+
+    placeLimitStopLossOrder: async (
       pair: Pair,
       side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
-    ) => {
-      return new Promise<Tx>((resolve) => {
-        resolve(
-          client.placeOrder(
-            subaccount,
-            pair,
-            OrderType.STOP_LIMIT,
-            side,
-            price,
-            size,
-            config.clientId,
-            config.timeInForce,
-            config.goodTilTimeInSeconds,
-            config.execution,
-            config.postOnly,
-            true,
-            config.triggerPrice,
-          ),
-        );
-      });
+    ): Promise<Tx> => {
+      return client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.STOP_LIMIT,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        true,
+        config.triggerPrice,
+      );
     },
-    placeMarketStopLossOrder: (
+
+    placeMarketStopLossOrder: async (
       pair: Pair,
       side: OrderSide,
       price: number,
       size: number,
       config: OrderConfig,
-    ) => {
-      return new Promise<Tx>((resolve) => {
-        resolve(
-          client.placeOrder(
-            subaccount,
-            pair,
-            OrderType.STOP_MARKET,
-            side,
-            price,
-            size,
-            config.clientId,
-            config.timeInForce,
-            config.goodTilTimeInSeconds,
-            config.execution,
-            config.postOnly,
-            true,
-            config.triggerPrice,
-          ),
-        );
-      });
+    ): Promise<Tx> => {
+      return client.placeOrder(
+        subaccount,
+        pair,
+        OrderType.STOP_MARKET,
+        side,
+        price,
+        size,
+        config.clientId,
+        config.timeInForce,
+        config.goodTilTimeInSeconds,
+        config.execution,
+        config.postOnly,
+        true,
+        config.triggerPrice,
+      );
     },
-    listPositions: () => {
-      return new Promise<Position[]>(async (resolve) => {
-        const subAccRes = await indexer_client.account.getSubaccounts(
+
+    listPositions: async (): Promise<Position[]> => {
+      const subAccRes = await indexer_client.account.getSubaccounts(
+        wallet.address || '',
+      );
+
+      return indexer_client.account
+        .getSubaccountAssetPositions(
           wallet.address || '',
-        );
-
-        const response =
-          await indexer_client.account.getSubaccountAssetPositions(
-            wallet.address || '',
-            subAccRes.subaccounts[0],
-          );
-        const positions = response.positions;
-
-        resolve(positions);
-      });
+          subAccRes.subaccounts[0],
+        )
+        .then((res) => {
+          return res.positions;
+        });
     },
   };
 };
