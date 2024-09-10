@@ -33,7 +33,14 @@ export interface Candle {
 }
 
 export type Tx = BroadcastTxAsyncResponse | BroadcastTxSyncResponse | IndexedTx;
-export type Position = {};
+export type Position = {
+  symbol: string;
+  side: string;
+  size: string;
+  assetId: string;
+  subaccountNumber: number;
+};
+
 export interface OrderConfig {
   clientId: number;
   timeInForce: OrderTimeInForce;
