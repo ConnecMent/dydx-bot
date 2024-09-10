@@ -10,11 +10,11 @@ import {
   IndexerClient,
 } from '@dydxprotocol/v4-client-js';
 
-const createOrderService = async (mnemonic: string, network: Network) => {
-  const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
-  const subaccount = new SubaccountClient(wallet, 0);
+const createOrderService = async (
+  subaccount: SubaccountClient,
+  network: Network,
+) => {
   const client = await CompositeClient.connect(network);
-
   const indexer_client = new IndexerClient(network.indexerConfig);
 
   return {
@@ -163,14 +163,10 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     },
 
     listPositions: async (): Promise<Position[]> => {
-      const subAccRes = await indexer_client.account.getSubaccounts(
-        wallet.address || '',
-      );
-
       return indexer_client.account
         .getSubaccountAssetPositions(
-          wallet.address || '',
-          subAccRes.subaccounts[0],
+          subaccount.address,
+          subaccount.subaccountNumber,
         )
         .then((res) => {
           return res.positions;
