@@ -39,7 +39,6 @@ export type Position = {
 };
 
 export interface OrderConfig {
-  clientId: number;
   timeInForce: OrderTimeInForce;
   execution: OrderExecution;
   postOnly: boolean;

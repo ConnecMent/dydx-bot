@@ -15,6 +15,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
   const subAccount = new SubaccountClient(wallet, 0);
   const client = await CompositeClient.connect(network);
   const indexerClient = new IndexerClient(network.indexerConfig);
+  const clientId = Math.floor(Math.random() * 1000 + 1000); // 1000 -> 2000
 
   return {
     placeLimitOrder: async (
@@ -31,7 +32,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        config.clientId,
+        clientId,
         config.timeInForce,
         config.goodTilTimeInSeconds,
         config.execution,
@@ -55,7 +56,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        config.clientId,
+        clientId,
         config.timeInForce,
         config.goodTilTimeInSeconds,
         config.execution,
@@ -79,7 +80,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        config.clientId,
+        clientId,
         config.timeInForce,
         config.goodTilTimeInSeconds,
         config.execution,
@@ -103,7 +104,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        config.clientId,
+        clientId,
         config.timeInForce,
         config.goodTilTimeInSeconds,
         config.execution,
@@ -127,7 +128,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        config.clientId,
+        clientId,
         config.timeInForce,
         config.goodTilTimeInSeconds,
         config.execution,
@@ -151,7 +152,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        config.clientId,
+        clientId,
         config.timeInForce,
         config.goodTilTimeInSeconds,
         config.execution,
