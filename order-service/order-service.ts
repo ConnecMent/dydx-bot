@@ -6,12 +6,13 @@ import {
   Network,
   CompositeClient,
   IndexerClient,
+  LocalWallet,
+  BECH32_PREFIX,
 } from '@dydxprotocol/v4-client-js';
 
-const createOrderService = async (
-  subaccount: SubaccountClient,
-  network: Network,
-) => {
+const createOrderService = async (mnemonic: string, network: Network) => {
+  const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
+  const subAccount = new SubaccountClient(wallet, 0);
   const client = await CompositeClient.connect(network);
   const indexerClient = new IndexerClient(network.indexerConfig);
 
@@ -24,7 +25,7 @@ const createOrderService = async (
       config: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
-        subaccount,
+        subAccount,
         pair,
         OrderType.LIMIT,
         side,
@@ -48,7 +49,7 @@ const createOrderService = async (
       config: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
-        subaccount,
+        subAccount,
         pair,
         OrderType.MARKET,
         side,
@@ -72,7 +73,7 @@ const createOrderService = async (
       config: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
-        subaccount,
+        subAccount,
         pair,
         OrderType.TAKE_PROFIT_LIMIT,
         side,
@@ -96,7 +97,7 @@ const createOrderService = async (
       config: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
-        subaccount,
+        subAccount,
         pair,
         OrderType.TAKE_PROFIT_MARKET,
         side,
@@ -120,7 +121,7 @@ const createOrderService = async (
       config: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
-        subaccount,
+        subAccount,
         pair,
         OrderType.STOP_LIMIT,
         side,
@@ -144,7 +145,7 @@ const createOrderService = async (
       config: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
-        subaccount,
+        subAccount,
         pair,
         OrderType.STOP_MARKET,
         side,
@@ -163,8 +164,8 @@ const createOrderService = async (
     listPositions: async (): Promise<Position[]> => {
       return indexerClient.account
         .getSubaccountAssetPositions(
-          subaccount.address,
-          subaccount.subaccountNumber,
+          wallet.address || '',
+          subAccount.subaccountNumber,
         )
         .then((res) => {
           return res.positions;
