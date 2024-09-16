@@ -176,3 +176,5 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     },
   };
 };
+
+export default createOrderService;
