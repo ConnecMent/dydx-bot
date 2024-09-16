@@ -42,6 +42,5 @@ export interface OrderConfig {
   timeInForce?: OrderTimeInForce;
   execution?: OrderExecution;
   postOnly?: boolean;
-  triggerPrice?: number;
   goodTilTimeInSeconds?: number;
 }

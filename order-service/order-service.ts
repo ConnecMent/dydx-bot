@@ -38,7 +38,6 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         config?.execution,
         config?.postOnly,
         false,
-        config?.triggerPrice,
       );
     },
 
@@ -62,7 +61,6 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         config?.execution,
         config?.postOnly,
         false,
-        config?.triggerPrice,
       );
     },
 
@@ -71,6 +69,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
+      triggerPrice: number,
       config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
@@ -86,7 +85,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         config?.execution,
         config?.postOnly,
         true,
-        config?.triggerPrice,
+        triggerPrice,
       );
     },
 
@@ -95,6 +94,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
+      triggerPrice: number,
       config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
@@ -110,7 +110,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         config?.execution,
         config?.postOnly,
         true,
-        config?.triggerPrice,
+        triggerPrice,
       );
     },
 
@@ -119,6 +119,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
+      triggerPrice: number,
       config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
@@ -134,7 +135,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         config?.execution,
         config?.postOnly,
         true,
-        config?.triggerPrice,
+        triggerPrice,
       );
     },
 
@@ -143,6 +144,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
+      triggerPrice: number,
       config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
@@ -158,7 +160,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         config?.execution,
         config?.postOnly,
         true,
-        config?.triggerPrice,
+        triggerPrice,
       );
     },
 
