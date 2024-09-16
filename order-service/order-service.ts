@@ -23,7 +23,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
-      config: OrderConfig,
+      config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
         subAccount,
@@ -33,12 +33,12 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         price,
         size,
         clientId,
-        config.timeInForce,
-        config.goodTilTimeInSeconds,
-        config.execution,
-        config.postOnly,
+        config?.timeInForce,
+        config?.goodTilTimeInSeconds,
+        config?.execution,
+        config?.postOnly,
         false,
-        config.triggerPrice,
+        config?.triggerPrice,
       );
     },
 
@@ -47,7 +47,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
-      config: OrderConfig,
+      config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
         subAccount,
@@ -57,12 +57,12 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         price,
         size,
         clientId,
-        config.timeInForce,
-        config.goodTilTimeInSeconds,
-        config.execution,
-        config.postOnly,
+        config?.timeInForce,
+        config?.goodTilTimeInSeconds,
+        config?.execution,
+        config?.postOnly,
         false,
-        config.triggerPrice,
+        config?.triggerPrice,
       );
     },
 
@@ -71,7 +71,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
-      config: OrderConfig,
+      config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
         subAccount,
@@ -81,12 +81,12 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         price,
         size,
         clientId,
-        config.timeInForce,
-        config.goodTilTimeInSeconds,
-        config.execution,
-        config.postOnly,
+        config?.timeInForce,
+        config?.goodTilTimeInSeconds,
+        config?.execution,
+        config?.postOnly,
         true,
-        config.triggerPrice,
+        config?.triggerPrice,
       );
     },
 
@@ -95,7 +95,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
-      config: OrderConfig,
+      config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
         subAccount,
@@ -105,12 +105,12 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         price,
         size,
         clientId,
-        config.timeInForce,
-        config.goodTilTimeInSeconds,
-        config.execution,
-        config.postOnly,
+        config?.timeInForce,
+        config?.goodTilTimeInSeconds,
+        config?.execution,
+        config?.postOnly,
         true,
-        config.triggerPrice,
+        config?.triggerPrice,
       );
     },
 
@@ -119,7 +119,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
-      config: OrderConfig,
+      config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
         subAccount,
@@ -129,12 +129,12 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         price,
         size,
         clientId,
-        config.timeInForce,
-        config.goodTilTimeInSeconds,
-        config.execution,
-        config.postOnly,
+        config?.timeInForce,
+        config?.goodTilTimeInSeconds,
+        config?.execution,
+        config?.postOnly,
         true,
-        config.triggerPrice,
+        config?.triggerPrice,
       );
     },
 
@@ -143,7 +143,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       side: OrderSide,
       price: number,
       size: number,
-      config: OrderConfig,
+      config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
         subAccount,
@@ -153,12 +153,12 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         price,
         size,
         clientId,
-        config.timeInForce,
-        config.goodTilTimeInSeconds,
-        config.execution,
-        config.postOnly,
+        config?.timeInForce,
+        config?.goodTilTimeInSeconds,
+        config?.execution,
+        config?.postOnly,
         true,
-        config.triggerPrice,
+        config?.triggerPrice,
       );
     },
 
