@@ -39,9 +39,9 @@ export type Position = {
 };
 
 export interface OrderConfig {
-  timeInForce: OrderTimeInForce;
-  execution: OrderExecution;
-  postOnly: boolean;
-  triggerPrice: number | undefined;
-  goodTilTimeInSeconds: number;
+  timeInForce?: OrderTimeInForce;
+  execution?: OrderExecution;
+  postOnly?: boolean;
+  triggerPrice?: number;
+  goodTilTimeInSeconds?: number;
 }
