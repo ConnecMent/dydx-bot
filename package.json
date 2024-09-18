@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@dydxprotocol/v4-client-js": "^1.3.2",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "lodash": "^4.17.21"
   },
   "scripts": {
     "prepare": "husky",

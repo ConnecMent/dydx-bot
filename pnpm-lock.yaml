@@ -13,6 +13,9 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
     devDependencies:
       husky:
         specifier: ^9.1.4
@@ -968,6 +971,12 @@ packages:
       }
     engines: { node: '>=18.0.0' }
 
+  lodash@4.17.21:
+    resolution:
+      {
+        integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==,
+      }
+
   log-update@6.1.0:
     resolution:
       {
@@ -1916,6 +1925,8 @@ snapshots:
       log-update: 6.1.0
       rfdc: 1.4.1
       wrap-ansi: 9.0.0
+
+  lodash@4.17.21: {}
 
   log-update@6.1.0:
     dependencies:
