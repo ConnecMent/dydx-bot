@@ -6,12 +6,16 @@ import {
   Network,
   CompositeClient,
   IndexerClient,
-  LocalWallet,
   BECH32_PREFIX,
 } from '@dydxprotocol/v4-client-js';
 
+import v4_client_js from '@dydxprotocol/v4-client-js';
+
 const createOrderService = async (mnemonic: string, network: Network) => {
-  const wallet = await LocalWallet.fromMnemonic(mnemonic, BECH32_PREFIX);
+  const wallet = await v4_client_js.LocalWallet.fromMnemonic(
+    mnemonic,
+    BECH32_PREFIX,
+  );
   const subAccount = new SubaccountClient(wallet, 0);
   const client = await CompositeClient.connect(network);
   const indexerClient = new IndexerClient(network.indexerConfig);
