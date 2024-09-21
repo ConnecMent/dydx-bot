@@ -1,5 +1,5 @@
 import { Tx, Pair, Position, OrderConfig } from '../types/common.js';
-import {
+import DefV4ClientJs, {
   OrderSide,
   OrderType,
   SubaccountClient,
@@ -9,10 +9,8 @@ import {
   BECH32_PREFIX,
 } from '@dydxprotocol/v4-client-js';
 
-import v4_client_js from '@dydxprotocol/v4-client-js';
-
 const createOrderService = async (mnemonic: string, network: Network) => {
-  const wallet = await v4_client_js.LocalWallet.fromMnemonic(
+  const wallet = await DefV4ClientJs.LocalWallet.fromMnemonic(
     mnemonic,
     BECH32_PREFIX,
   );
