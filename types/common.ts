@@ -21,3 +21,8 @@ export interface Candle {
   trades: number;
   startingOpenInterest: string;
 }
+/**
+ * FIXME: Update when order service is implemented
+ * https://github.com/ConnecMent/dydx-bot/issues/4
+ */
+export type Order = any;
