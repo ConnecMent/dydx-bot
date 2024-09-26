@@ -66,31 +66,6 @@ const createOrderService = async (mnemonic: string, network: Network) => {
       );
     },
 
-    placeLimitTakeProfitOrder: async (
-      pair: Pair,
-      side: OrderSide,
-      price: number,
-      size: number,
-      triggerPrice: number,
-      config?: OrderConfig,
-    ): Promise<Tx> => {
-      return client.placeOrder(
-        subAccount,
-        pair,
-        OrderType.TAKE_PROFIT_LIMIT,
-        side,
-        price,
-        size,
-        clientId,
-        config?.timeInForce,
-        0,
-        config?.execution,
-        config?.postOnly,
-        true,
-        triggerPrice,
-      );
-    },
-
     placeMarketTakeProfitOrder: async (
       pair: Pair,
       side: OrderSide,
@@ -103,31 +78,6 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         subAccount,
         pair,
         OrderType.TAKE_PROFIT_MARKET,
-        side,
-        price,
-        size,
-        clientId,
-        config?.timeInForce,
-        0,
-        config?.execution,
-        config?.postOnly,
-        true,
-        triggerPrice,
-      );
-    },
-
-    placeLimitStopLossOrder: async (
-      pair: Pair,
-      side: OrderSide,
-      price: number,
-      size: number,
-      triggerPrice: number,
-      config?: OrderConfig,
-    ): Promise<Tx> => {
-      return client.placeOrder(
-        subAccount,
-        pair,
-        OrderType.STOP_LIMIT,
         side,
         price,
         size,
