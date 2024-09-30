@@ -17,7 +17,9 @@ const createOrderService = async (mnemonic: string, network: Network) => {
   const subAccount = new SubaccountClient(wallet, 0);
   const client = await CompositeClient.connect(network);
   const indexerClient = new IndexerClient(network.indexerConfig);
-  const clientId = Math.floor(Math.random() * 1000 + 1000); // 1000 -> 2000
+  const clientIdGen = (): number => {
+    return Date.now() * 1000 + Math.floor(Math.random() * 1000);
+  };
 
   return {
     placeLimitOrder: async (
@@ -34,7 +36,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        clientId,
+        clientIdGen(),
         config?.timeInForce,
         0,
         config?.execution,
@@ -57,7 +59,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        clientId,
+        clientIdGen(),
         config?.timeInForce,
         0,
         config?.execution,
@@ -81,7 +83,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        clientId,
+        clientIdGen(),
         config?.timeInForce,
         0,
         config?.execution,
@@ -106,7 +108,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         side,
         price,
         size,
-        clientId,
+        clientIdGen(),
         config?.timeInForce,
         0,
         config?.execution,
