@@ -43,3 +43,9 @@ export interface OrderConfig {
   execution?: OrderExecution;
   postOnly?: boolean;
 }
+
+/**
+ * FIXME: Update when order service is implemented
+ * https://github.com/ConnecMent/dydx-bot/issues/4
+ */
+export type Order = any;
