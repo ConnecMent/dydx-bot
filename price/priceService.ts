@@ -1,7 +1,7 @@
 import { baseUrl } from './url.js';
 import { Candle, TimeFrame, Pair } from '../types/common.js';
 
-async function fetchCandles(
+export async function fetchCandles(
   pair: Pair,
   timeFrame: TimeFrame,
 ): Promise<Candle[]> {
