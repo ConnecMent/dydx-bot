@@ -38,7 +38,6 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         size,
         clientIdGen(),
         config?.timeInForce,
-        0,
         config?.execution,
         config?.postOnly,
         false,
@@ -119,6 +118,17 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     },
 
     listPositions: async (): Promise<Position[]> => {
+      return indexerClient.account
+        .getSubaccountPerpetualPositions(
+          wallet.address || '',
+          subAccount.subaccountNumber,
+        )
+        .then((res) => {
+          return res.positions;
+        });
+    },
+
+    listAssetPositions: async (): Promise<Position[]> => {
       return indexerClient.account
         .getSubaccountAssetPositions(
           wallet.address || '',
