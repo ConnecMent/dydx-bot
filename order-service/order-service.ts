@@ -9,7 +9,7 @@ import DefV4ClientJs, {
   BECH32_PREFIX,
 } from '@dydxprotocol/v4-client-js';
 
-let goodTilTimeInSeconds = 2592000; // ~ 1 month
+const goodTilTimeInSeconds = 2592000; // ~ 1 month
 
 const createOrderService = async (mnemonic: string, network: Network) => {
   const wallet = await DefV4ClientJs.LocalWallet.fromMnemonic(
