@@ -8,6 +8,7 @@ const MINUTE = 60 * SECONDS;
 
 const config = {
   interval: Number(process.env.INTERVAL) * MINUTE,
+  strategiesFilePath: Array<String>(),
 };
 
 export default config;
