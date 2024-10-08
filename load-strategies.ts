@@ -1,19 +1,24 @@
-import { Strategy } from './types/strategy.js';
+import { Strategy, strategySchema } from './types/strategy.js';
 import { readFileSync } from 'fs';
 import config from './config.js';
 
-/**
- * TODO: https://github.com/ConnecMent/dydx-bot/issues/28
- */
 export const loadStrategies = async (): Promise<Strategy[]> => {
   const loaded_strategies: Strategy[] = [];
 
   config.strategiesFilePath.forEach((path) => {
     try {
       const loadedConfig = readFileSync(path, 'utf-8');
-      const importedJson = JSON.parse(loadedConfig);
+      const importedJson: Strategy = JSON.parse(loadedConfig);
 
-      // If validation passes, add to loaded strategies
+      const isValid = Object.keys(strategySchema).every((key) => {
+        const typedKey = key as keyof Strategy;
+        return strategySchema[typedKey](importedJson[typedKey]);
+      });
+
+      if (!isValid) {
+        throw new Error('Invalid strategy file');
+      }
+
       loaded_strategies.push(importedJson as Strategy);
     } catch (error) {
       console.error(`Error loading a strategy file ${path}: ${error}`);

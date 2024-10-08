@@ -1,7 +1,8 @@
 {
   "platform": "dydx",
   "pair": "ETH-USD",
-  "timeframe": "1ssMIN",
+  "timeframe": "1MIN",
   "planPlugin": "plan-example-1",
+  "executePlugin": "execute-example-1",
   "managePlugin": "manage-example-1"
 }
