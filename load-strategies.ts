@@ -1,4 +1,5 @@
-import { Strategy, strategySchema } from './types/strategy.js';
+import { Strategy } from './types/strategy.js';
+import { strategySchema } from './validations/strategy-schema.js';
 import { readFileSync } from 'fs';
 import config from './config.js';
 
