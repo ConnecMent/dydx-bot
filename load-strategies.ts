@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 import config from './config.js';
 
 export const loadStrategies = async (): Promise<Strategy[]> => {
-  const loaded_strategies: Strategy[] = [];
+  const loadedStrategies: Strategy[] = [];
 
   try {
     const loadedFile = readFileSync(config.strategiesFilePath, 'utf-8');
@@ -19,7 +19,7 @@ export const loadStrategies = async (): Promise<Strategy[]> => {
       if (!isValid) {
         throw new Error('Invalid strategy file');
       }
-      loaded_strategies.push(strategy as Strategy);
+      loadedStrategies.push(strategy as Strategy);
     });
   } catch (error) {
     console.error(
@@ -27,7 +27,7 @@ export const loadStrategies = async (): Promise<Strategy[]> => {
     );
   }
 
-  return loaded_strategies;
+  return loadedStrategies;
 };
 
 console.log(await loadStrategies());
