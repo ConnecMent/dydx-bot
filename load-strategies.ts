@@ -27,5 +27,3 @@ export const loadStrategies = async (): Promise<Strategy[]> => {
 
   return loaded_strategies;
 };
-
-console.log(await loadStrategies());
