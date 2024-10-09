@@ -1,4 +1,5 @@
 export const strategySchema: Readonly<{
+  id: (value: unknown) => boolean;
   platform: (value: unknown) => boolean;
   pair: (value: unknown) => boolean;
   timeframe: (value: unknown) => boolean;
@@ -6,6 +7,7 @@ export const strategySchema: Readonly<{
   executePlugin: (value: unknown) => boolean;
   managePlugin: (value: unknown) => boolean;
 }> = {
+  id: (value: unknown): boolean => typeof value === 'string',
   platform: (value: unknown): boolean => value === 'dydx',
   pair: (value: unknown): boolean => typeof value === 'string',
   timeframe: (value: unknown): boolean =>

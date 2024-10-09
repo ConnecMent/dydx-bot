@@ -1,5 +1,6 @@
 [
   {
+    "id": "strategy-example-1",
     "platform": "dydx",
     "pair": "ETH-USD",
     "timeframe": "1MIN",
@@ -8,6 +9,7 @@
     "managePlugin": "manage-example-1"
   },
   {
+    "id": "strategy-example-2",
     "platform": "dydx",
     "pair": "BTC-USD",
     "timeframe": "5MINS",
