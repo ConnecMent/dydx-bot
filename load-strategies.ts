@@ -6,25 +6,28 @@ import config from './config.js';
 export const loadStrategies = async (): Promise<Strategy[]> => {
   const loaded_strategies: Strategy[] = [];
 
-  config.strategiesFilePath.forEach((path) => {
-    try {
-      const loadedConfig = readFileSync(path, 'utf-8');
-      const importedJson: Strategy = JSON.parse(loadedConfig);
+  try {
+    const loadedFile = readFileSync(config.strategiesFilePath, 'utf-8');
+    const importedJson: Strategy[] = JSON.parse(loadedFile);
 
+    importedJson.forEach((strategy) => {
       const isValid = Object.keys(strategySchema).every((key) => {
         const typedKey = key as keyof Strategy;
-        return strategySchema[typedKey](importedJson[typedKey]);
+        return strategySchema[typedKey](strategy[typedKey]);
       });
 
       if (!isValid) {
         throw new Error('Invalid strategy file');
       }
-
-      loaded_strategies.push(importedJson as Strategy);
-    } catch (error) {
-      console.error(`Error loading a strategy file ${path}: ${error}`);
-    }
-  });
+      loaded_strategies.push(strategy as Strategy);
+    });
+  } catch (error) {
+    console.error(
+      `Error loading a strategy file ${config.strategiesFilePath}: ${error}`,
+    );
+  }
 
   return loaded_strategies;
 };
+
+console.log(await loadStrategies());

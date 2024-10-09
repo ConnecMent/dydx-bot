@@ -1,8 +1,18 @@
-{
-  "platform": "dydx",
-  "pair": "ETH-USD",
-  "timeframe": "1MIN",
-  "planPlugin": "plan-example-1",
-  "executePlugin": "execute-example-1",
-  "managePlugin": "manage-example-1"
-}
+[
+  {
+    "platform": "dydx",
+    "pair": "ETH-USD",
+    "timeframe": "1MIN",
+    "planPlugin": "plan-example-1",
+    "executePlugin": "execute-example-1",
+    "managePlugin": "manage-example-1"
+  },
+  {
+    "platform": "dydx",
+    "pair": "BTC-USD",
+    "timeframe": "5MINS",
+    "planPlugin": "plan-example-2",
+    "executePlugin": "execute-example-2",
+    "managePlugin": "manage-example-2"
+  }
+]
