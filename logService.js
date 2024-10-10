@@ -1,6 +1,4 @@
-const pino = require('pino');
-const pinoRoll = require('pino-roll');
-
+import pino from 'pino'
 
 const logger = pino({
   
@@ -27,10 +25,4 @@ const logger = pino({
   },
 });
 
-setInterval(() => {
-  const logLevels = ['fatal', 'error', 'warn', 'info', 'debug', 'trace'];
-  const randomLevel = logLevels[Math.floor(Math.random() * logLevels.length)];
-
-  logger[randomLevel](`Logging at level: ${randomLevel}`);
-
-}, 10 * 1000);
+export default logger;
