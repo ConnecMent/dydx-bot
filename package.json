@@ -9,7 +9,11 @@
     "tsx": "^4.17.0"
   },
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "@types/node": "^22.7.5",
+    "dotenv": "^16.4.5",
+    "pino": "^9.4.0",
+    "pino-pretty": "^11.2.2",
+    "pino-roll": "^2.1.0"
   },
   "scripts": {
     "prepare": "husky",
