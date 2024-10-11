@@ -1,16 +1,14 @@
+import { Network } from '@dydxprotocol/v4-client-js';
 import config from './config.js';
 
 import { installPlugins } from './install-plugins.js';
 import { loadStrategies } from './load-strategies.js';
+import createOrderService from './order-service/order-service.js';
 import { fetchCandles } from './price/priceService.js';
 
 import { Order } from './types/common.js';
 import { ExecutePlugin, ManagePlugin, PlanPlugin } from './types/plugin.js';
 
-/**
- * TODO: Step 1 - Read strategies
- * https://github.com/ConnecMent/dydx-bot/issues/28
- */
 const strategies = await loadStrategies();
 const requiredPluginNames = [
   ...new Set(
@@ -26,11 +24,13 @@ const requiredPluginNames = [
  * TODO: Step 2 - Install required plugins
  * https://github.com/ConnecMent/dydx-bot/issues/27
  */
-const plugins = await installPlugins();
+const plugins = await installPlugins(requiredPluginNames);
 
 const orders: Order[] = [];
 
 // Step 3: Run
+const orderService = await createOrderService('', Network.mainnet());
+
 const main = () => {
   strategies.forEach(async (strategy) => {
     const candles = await fetchCandles(strategy.pair, strategy.timeframe);
@@ -44,7 +44,12 @@ const main = () => {
        * TODO: Call `execute` with bot context
        * https://github.com/ConnecMent/dydx-bot/issues/4
        */
-      (plugins[strategy.executePlugin] as ExecutePlugin).execute(candles, side);
+      (plugins[strategy.executePlugin] as ExecutePlugin).execute(
+        candles,
+        side,
+        strategy.pair,
+        orderService,
+      );
     }
 
     /**

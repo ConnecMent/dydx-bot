@@ -1,3 +1,4 @@
+import createOrderService from '../order-service/order-service.js';
 import { Candle, Order, PositionType } from './common.js';
 
 export interface PlanPlugin {
@@ -5,7 +6,12 @@ export interface PlanPlugin {
 }
 
 export interface ExecutePlugin {
-  execute(candles: Candle[], side: PositionType): Promise<string>;
+  execute(
+    candles: Candle[],
+    side: PositionType,
+    pair: string,
+    orderService: Awaited<ReturnType<typeof createOrderService>>,
+  ): Promise<string>;
 }
 
 export interface ManagePlugin {

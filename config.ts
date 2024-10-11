@@ -11,6 +11,7 @@ const config = {
   logFrequency: process.env.LOG_FREQUENCY!,
   interval: Number(process.env.INTERVAL) * MINUTE,
   strategiesFilePath: process.env.STRATEGIES_FILE_PATH as string,
+  mnemonic: process.env.MNEMONIC!,
 };
 
 export default config;
