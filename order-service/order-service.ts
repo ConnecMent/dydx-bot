@@ -12,7 +12,8 @@ import DefV4ClientJs, {
   OrderExecution,
 } from '@dydxprotocol/v4-client-js';
 
-const goodTilTimeInSeconds = 2592000; // ~ 1 month
+const conditionalGoodTilTimeInSeconds = 2592000; // ~ 1 month
+const limitGoodTilTimeInSeconds = 900; // ~ 15 minutes
 
 const createOrderService = async (mnemonic: string, network: Network) => {
   const wallet = await DefV4ClientJs.LocalWallet.fromMnemonic(
@@ -43,7 +44,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         size,
         clientIdGen(),
         config?.timeInForce,
-        goodTilTimeInSeconds,
+        limitGoodTilTimeInSeconds,
         config?.execution,
         config?.postOnly,
         false,
@@ -83,7 +84,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         size,
         clientIdGen(),
         OrderTimeInForce.GTT,
-        goodTilTimeInSeconds,
+        conditionalGoodTilTimeInSeconds,
         OrderExecution.IOC,
         false,
         true,
@@ -106,7 +107,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         size,
         clientIdGen(),
         OrderTimeInForce.GTT,
-        goodTilTimeInSeconds,
+        conditionalGoodTilTimeInSeconds,
         OrderExecution.IOC,
         false,
         true,
