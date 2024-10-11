@@ -7,6 +7,8 @@ const SECONDS = 1000;
 const MINUTE = 60 * SECONDS;
 
 const config = {
+  logFile: process.env.LOG_FILE!,
+  logFrequency: process.env.LOG_FREQUENCY!,
   interval: Number(process.env.INTERVAL) * MINUTE,
   strategiesFilePath: process.env.STRATEGIES_FILE_PATH as string,
 };
