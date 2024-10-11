@@ -7,6 +7,9 @@ import DefV4ClientJs, {
   CompositeClient,
   IndexerClient,
   BECH32_PREFIX,
+  OrderTimeInForce,
+  Order_TimeInForce,
+  OrderExecution,
 } from '@dydxprotocol/v4-client-js';
 
 const goodTilTimeInSeconds = 2592000; // ~ 1 month
@@ -50,22 +53,17 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     placeMarketOrder: async (
       pair: Pair,
       side: OrderSide,
-      price: number,
       size: number,
-      config?: OrderConfig,
     ): Promise<Tx> => {
-      return client.placeOrder(
+      return client.placeShortTermOrder(
         subAccount,
         pair,
-        OrderType.MARKET,
         side,
-        price,
+        side === OrderSide.BUY ? 10_000_000 : Number.EPSILON,
         size,
         clientIdGen(),
-        config?.timeInForce,
-        goodTilTimeInSeconds,
-        config?.execution,
-        config?.postOnly,
+        +(await indexerClient.utility.getHeight()).height + 20,
+        Order_TimeInForce.TIME_IN_FORCE_UNSPECIFIED,
         false,
       );
     },
@@ -73,23 +71,21 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     placeMarketTakeProfitOrder: async (
       pair: Pair,
       side: OrderSide,
-      price: number,
       size: number,
       triggerPrice: number,
-      config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
         subAccount,
         pair,
         OrderType.TAKE_PROFIT_MARKET,
         side,
-        price,
+        side === OrderSide.BUY ? 10_000_000 : Number.EPSILON,
         size,
         clientIdGen(),
-        config?.timeInForce,
+        OrderTimeInForce.GTT,
         goodTilTimeInSeconds,
-        config?.execution,
-        config?.postOnly,
+        OrderExecution.IOC,
+        false,
         true,
         triggerPrice,
       );
@@ -98,23 +94,21 @@ const createOrderService = async (mnemonic: string, network: Network) => {
     placeMarketStopLossOrder: async (
       pair: Pair,
       side: OrderSide,
-      price: number,
       size: number,
       triggerPrice: number,
-      config?: OrderConfig,
     ): Promise<Tx> => {
       return client.placeOrder(
         subAccount,
         pair,
         OrderType.STOP_MARKET,
         side,
-        price,
+        side === OrderSide.BUY ? 10_000_000 : Number.EPSILON,
         size,
         clientIdGen(),
-        config?.timeInForce,
+        OrderTimeInForce.GTT,
         goodTilTimeInSeconds,
-        config?.execution,
-        config?.postOnly,
+        OrderExecution.IOC,
+        false,
         true,
         triggerPrice,
       );
