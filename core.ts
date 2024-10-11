@@ -26,7 +26,7 @@ const requiredPluginNames = [
  * TODO: Step 2 - Install required plugins
  * https://github.com/ConnecMent/dydx-bot/issues/27
  */
-const plugins = await installPlugins();
+const plugins = await installPlugins(requiredPluginNames);
 
 const orders: Order[] = [];
 
