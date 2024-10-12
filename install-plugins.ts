@@ -1,8 +1,9 @@
 import { Plugin } from './types/plugin.js';
 
-/**
- * TODO: https://github.com/ConnecMent/dydx-bot/issues/27
- */
-export const installPlugins = async (
-  pluginNames: string[],
-): Promise<Record<string, Plugin>> => ({});
+export default async function installPlugins(
+  pluginURLs: string[],
+): Promise<Record<string, Plugin>> {
+  const plugins = {};
+
+  return plugins;
+}
