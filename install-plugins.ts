@@ -16,20 +16,23 @@ export default async function installPlugins(
 
   for (const url of pluginURLs) {
     try {
-      await download(url, saveDir, { filename: 'temp' });
+      const fileName = url.split('/').pop();
 
-      const fileContent = fs.readFileSync(`${saveDir}/temp`);
+      if (fs.existsSync(`${saveDir}/${fileName}`) === false) {
+        await download(url, saveDir, { filename: fileName });
+      }
 
-      const plugin: Plugin = JSON.parse(fileContent.toString());
+      const fileContent = await import(`${saveDir}/${fileName}`);
+
+      const plugin: Plugin = fileContent.default as Plugin;
       plugins[plugin.name] = plugin;
-
-      fs.writeFileSync(`${saveDir}/${plugin.name}.json`, fileContent);
     } catch (e) {
       console.error('Failed to download plugin:', e);
-    } finally {
-      fs.unlinkSync(`${saveDir}/temp`);
     }
   }
 
   return plugins;
 }
+
+// TODO:
+//  Promise.all
