@@ -1,4 +1,10 @@
-import { Tx, Pair, Position, OrderConfig } from '../types/common.js';
+import {
+  Tx,
+  Pair,
+  Position,
+  OrderConfig,
+  PositionType,
+} from '../types/common.js';
 import DefV4ClientJs, {
   OrderSide,
   OrderType,
@@ -30,7 +36,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
   return {
     placeLimitOrder: async (
       pair: Pair,
-      side: OrderSide,
+      side: PositionType,
       price: number,
       size: number,
       config?: OrderConfig,
@@ -39,7 +45,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         subAccount,
         pair,
         OrderType.LIMIT,
-        side,
+        side === 'long' ? OrderSide.BUY : OrderSide.SELL,
         price,
         size,
         clientIdGen(),
@@ -53,14 +59,14 @@ const createOrderService = async (mnemonic: string, network: Network) => {
 
     placeMarketOrder: async (
       pair: Pair,
-      side: OrderSide,
+      side: PositionType,
       size: number,
     ): Promise<Tx> => {
       return client.placeShortTermOrder(
         subAccount,
         pair,
-        side,
-        side === OrderSide.BUY ? 10_000_000 : Number.EPSILON,
+        side === 'long' ? OrderSide.BUY : OrderSide.SELL,
+        side === 'long' ? 10_000_000 : Number.EPSILON,
         size,
         clientIdGen(),
         +(await indexerClient.utility.getHeight()).height + 20,
@@ -71,7 +77,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
 
     placeMarketTakeProfitOrder: async (
       pair: Pair,
-      side: OrderSide,
+      side: PositionType,
       size: number,
       triggerPrice: number,
     ): Promise<Tx> => {
@@ -79,8 +85,8 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         subAccount,
         pair,
         OrderType.TAKE_PROFIT_MARKET,
-        side,
-        side === OrderSide.BUY ? 10_000_000 : Number.EPSILON,
+        side === 'long' ? OrderSide.BUY : OrderSide.SELL,
+        side === 'long' ? 10_000_000 : Number.EPSILON,
         size,
         clientIdGen(),
         OrderTimeInForce.GTT,
@@ -94,7 +100,7 @@ const createOrderService = async (mnemonic: string, network: Network) => {
 
     placeMarketStopLossOrder: async (
       pair: Pair,
-      side: OrderSide,
+      side: PositionType,
       size: number,
       triggerPrice: number,
     ): Promise<Tx> => {
@@ -102,8 +108,8 @@ const createOrderService = async (mnemonic: string, network: Network) => {
         subAccount,
         pair,
         OrderType.STOP_MARKET,
-        side,
-        side === OrderSide.BUY ? 10_000_000 : Number.EPSILON,
+        side === 'long' ? OrderSide.BUY : OrderSide.SELL,
+        side === 'long' ? 10_000_000 : Number.EPSILON,
         size,
         clientIdGen(),
         OrderTimeInForce.GTT,
