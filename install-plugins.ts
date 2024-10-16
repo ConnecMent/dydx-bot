@@ -1,7 +1,6 @@
 import { Plugin } from './types/plugin.js';
 import download from 'download';
 import fs from 'fs';
-import { url } from 'inspector';
 import os from 'os';
 
 export default async function installPlugins(
@@ -19,12 +18,13 @@ export default async function installPlugins(
     pluginURLs.map(async (url) => {
       try {
         const fileName = url.split('/').pop();
+        const filePath = `${saveDir}/${fileName}`;
 
-        if (fs.existsSync(`${saveDir}/${fileName}`) === false) {
+        if (fs.existsSync(filePath) === false) {
           await download(url, saveDir, { filename: fileName });
         }
 
-        const fileContent = await import(`${saveDir}/${fileName}`);
+        const fileContent = await import(`file://${filePath}`);
 
         const plugin: Plugin = fileContent.default as Plugin;
         plugins[plugin.name] = plugin;
