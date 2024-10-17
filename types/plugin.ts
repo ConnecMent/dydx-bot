@@ -11,11 +11,13 @@ export interface ExecutePlugin {
     side: PositionType,
     pair: string,
     orderService: Awaited<ReturnType<typeof createOrderService>>,
-  ): Promise<string>;
+  ): Promise<void>;
 }
 
 export interface ManagePlugin {
-  manage(orders: Order[]): Promise<void>;
+  manage(
+    orderService: Awaited<ReturnType<typeof createOrderService>>,
+  ): Promise<void>;
 }
 
 export interface Plugin
