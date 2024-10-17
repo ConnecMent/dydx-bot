@@ -3,7 +3,7 @@ import download from 'download';
 import fs from 'fs';
 import os from 'os';
 
-export default async function installPlugins(
+export async function installPlugins(
   pluginURLs: string[],
 ): Promise<Record<string, Plugin>> {
   const plugins: Record<string, Plugin> = {};
