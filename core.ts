@@ -7,8 +7,6 @@ import logger from './log-service.js';
 import createOrderService from './order-service/order-service.js';
 import { fetchCandles } from './price/priceService.js';
 
-import { ExecutePlugin, ManagePlugin, PlanPlugin } from './types/plugin.js';
-
 logger.info('Starting bot');
 
 const strategies = await loadStrategies();
@@ -38,9 +36,11 @@ const main = () => {
       `Candles for ${strategy.pair} in timeframe ${strategy.timeframe} fetched`,
     );
 
-    const side = (plugins[strategy.planPlugin] as PlanPlugin).chooseSide(
-      candles,
-    );
+    const planPlugin = plugins[strategy.planPlugin.name];
+    const executePlugin = plugins[strategy.executePlugin.name];
+    const managePlugin = plugins[strategy.managePlugin.name];
+
+    const side = planPlugin.chooseSide?.(candles);
     logger.info(`Plan plugin ran over fetched candles`);
     logger.info(`Plan plugin result: ${side}`);
 
@@ -49,17 +49,14 @@ const main = () => {
         'Running execute plugin because plan plugin result was not null',
       );
 
-      await (plugins[strategy.executePlugin] as ExecutePlugin).execute(
-        candles,
-        side,
-        strategy.pair,
-        orderService,
-      );
+      await executePlugin.execute?.(candles, side, strategy.pair, orderService);
       logger.info('Execute plugin ran based on plan');
     }
 
-    (plugins[strategy.managePlugin] as ManagePlugin).manage(orderService);
+    managePlugin.manage?.(orderService);
     logger.info('Manage plugin ran');
+
+    logger.info(`Strategy with id ${strategy.id} completed running`);
   });
 };
 
