@@ -12,6 +12,7 @@ export interface Strategy {
    */
   id: string;
   platform: 'dydx';
+  type: 'testnet' | 'mainnet';
   pair: string;
   timeframe: TimeFrame;
   planPlugin: PluginInfo;

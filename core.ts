@@ -7,6 +7,8 @@ import logger from './log-service.js';
 import createOrderService from './order-service/order-service.js';
 import { fetchCandles } from './price/priceService.js';
 
+import { timeframeInMs } from './constants.js';
+
 logger.info('Starting bot');
 
 const strategies = await loadStrategies();
@@ -25,12 +27,16 @@ logger.debug('Installing or loading required plugins', requiredPluginNames);
 const plugins = await installPlugins(requiredPluginNames);
 logger.info('Plugins installed or loaded');
 
-// Step 3: Run
-logger.info('Order service created');
+strategies.forEach(async (strategy) => {
+  const orderService = await createOrderService(
+    config.mnemonic,
+    strategy.type === 'mainnet' ? Network.mainnet() : Network.testnet(),
+  );
 
-const main = () => {
-  strategies.forEach(async (strategy) => {
-    logger.info(`Running strategy with id ${strategy.id}`);
+  logger.info(`Order service created for strategy ${strategy.id}`);
+
+  const runStrategy = async () => {
+    logger.info(`Running strategy ${strategy.id}`);
     const candles = await fetchCandles(strategy.pair, strategy.timeframe);
     logger.info(
       `Candles for ${strategy.pair} in timeframe ${strategy.timeframe} fetched`,
@@ -57,8 +63,8 @@ const main = () => {
     logger.info('Manage plugin ran');
 
     logger.info(`Strategy with id ${strategy.id} completed running`);
-  });
-};
+  };
 
-main();
-setInterval(main, config.interval);
+  runStrategy();
+  setInterval(runStrategy, timeframeInMs[strategy.timeframe]);
+});
