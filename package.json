@@ -23,7 +23,7 @@
   },
   "scripts": {
     "prepare": "husky",
-    "dev": "tsx index.ts",
+    "dev": "tsx core.ts",
     "node": "node --import=tsx index.ts",
     "format": "npx prettier --ignore-unknown --write ."
   },
