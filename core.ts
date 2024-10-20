@@ -59,8 +59,8 @@ strategies.forEach(async (strategy) => {
       logger.info('Execute plugin ran based on plan');
     }
 
-    managePlugin.manage?.(orderService);
-    logger.info('Manage plugin ran');
+    await managePlugin.manage?.(orderService);
+    logger.info('Manage plugin run');
 
     logger.info(`Strategy with id ${strategy.id} completed running`);
   };
