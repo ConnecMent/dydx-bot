@@ -1,5 +1,5 @@
 import createOrderService from '../order-service/order-service.js';
-import { Candle, Order, PositionType } from './common.js';
+import { Candle, PositionType } from './common.js';
 
 export interface PlanPlugin {
   chooseSide(candles: Candle[]): PositionType;
